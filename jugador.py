@@ -1,31 +1,22 @@
-from ruleta import Ruleta
+#from ruleta import Ruleta
 
 class Jugador:
-    nombre: str
-    saldo: int
-    premio: str
-
-    def __init__(self, nombre: str, saldo: int = 0):
+    def __init__(self, nombre: str, saldo: int = 200):
         self.nombre = nombre
-        if saldo < 0:
-            self.saldo = 0
-        else:
-            self.saldo = saldo
+        self.saldo = saldo
 
-    def obtener_permio(self) -> str:
-        self.premio = Ruleta.girar_ruleta()
-        if self.premio == "X2":
-                self.saldo += self.saldo
-        elif self.premio == "Quiebra":
-                self.saldo = 0
-        elif self.premio == "1/2":
-            self.saldo = self.saldo / 2
-        elif self.premio == "Comodin":
-            self.premio = Ruleta.girar_ruleta
-            
-        
-            
-        
-    def aplicar_premio(self, ganado: bool) -> None:
-        if ganado:
-             self.saldo += self.premio
+    def elegir_letra(self) -> str:
+        letra = input("Elige una letra: ").upper()
+        return letra
+
+    def aplicar_premio(self, premio: str) -> None:
+        if premio == "X2":
+            self.saldo *= 2
+        elif premio == "Quiebra":
+            self.saldo = 0
+        elif premio == "1/2":
+            self.saldo //= 2
+        elif premio == "Comodin":
+            pass  # Implementar lógica para Comodin si es necesario
+        else:
+            self.saldo += int(premio)

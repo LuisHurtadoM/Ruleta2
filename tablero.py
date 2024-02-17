@@ -1,16 +1,27 @@
 class Tablero:
-    frase_revelada : str
-    letras_usadas : list [str]
-    estado_tablero: bool
+    def __init__(self, frase_juego: str):
+        self.frase_juego = frase_juego
+        self.frase_revelada = "_" * len(frase_juego)
+        self.letras_usadas = set()
 
-    def __init__(self,frase_juego:str):
-        self.frase_revelada = frase_juego
-        self.letras_usadas = []
-        self.estado_tablero = False
+    def mostrar_tablero(self) -> str:
+        return " ".join(self.frase_revelada)
 
-    def mostrar_tablero(self,letra: str) -> None:
-        for i in self.frase_revelada:
-            if letra in self.letras_usadas:
-                print(letra)
-            else :
-                print("_")
+    def letra_en_frase(self, letra: str) -> bool:
+        return letra in self.frase_juego
+
+    def actualizar_tablero(self, letra: str) -> None:
+        nueva_frase = ""
+        for letra_actual, letra_revelada in zip(self.frase_juego, self.frase_revelada):
+            if letra_actual == letra:
+                nueva_frase += letra_actual
+            else:
+                nueva_frase += letra_revelada
+        self.frase_revelada = nueva_frase
+
+    def registrar_letra_usada(self, letra: str) -> None:
+        self.letras_usadas.add(letra)
+
+    def frase_completa(self) -> bool:
+        return self.frase_juego == self.frase_revelada
+
