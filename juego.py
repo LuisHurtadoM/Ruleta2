@@ -3,6 +3,11 @@ from ruleta import Ruleta
 from tablero import Tablero
 import random
 
+from jugador import Jugador
+from ruleta import Ruleta
+from tablero import Tablero
+import random
+
 class Juego:
     def __init__(self, jugadores: list[Jugador], ruleta: Ruleta, tablero: Tablero):
         self.jugadores = jugadores
@@ -19,7 +24,7 @@ class Juego:
             for jugador in self.jugadores:
                 if jugador.saldo <= 0:
                     continue
-                
+
                 print(f"Turno de {jugador.nombre}:")
                 # Girar la ruleta y obtener el premio o penalización
                 premio = self.ruleta.girar_ruleta(jugador)
@@ -35,17 +40,17 @@ class Juego:
                 if letra in self.tablero.letras_usadas:
                     print("Esa letra ya ha sido usada. Elige otra.")
                     continue
-                
+
                 # Verificar si la letra está en la frase y actualizar el tablero
                 if self.tablero.letra_en_frase(letra):
-                    self.tablero.actualizar_tablero(letra)
+                    self.tablero.actualizar_tablero(letra)  # Llamada para actualizar el tablero
                     print(f"¡Bien hecho! {letra} está en la frase.")
                 else:
                     print(f"{letra} no está en la frase.")
                 # Aplicar premio o penalización al jugador
                 jugador.aplicar_premio(premio)
                 # Mostrar el estado actual del tablero y el saldo del jugador
-                print(f"Tablero actual: {self.tablero.mostrar_tablero()}")
+                print(self.tablero.mostrar_tablero())
                 print(f"Saldo actual de {jugador.nombre}: {jugador.saldo}")
                 print("-------------------------------------------")
 
