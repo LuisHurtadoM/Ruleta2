@@ -1,0 +1,7 @@
+bajo|De tal palo tal astilla|Pista: Bajo 1 Refran popular.
+bajo|Roscon de reyes|Pista: Bajor 2 Postre.
+medio|Sistema endomembranoso|Pista: Medio 1 Biologia.
+medio|Indiana Jones y el templo de la perdicion|Pista: Medio 2 Pelicula.
+alto|Gargantilla del Lozoya y Pinilla de Buitrago|Pista: Alto 1 Ciudad de España.
+alto|La suma de los catetos es mayor que la hipotenusa|Pista: Alto 2 Teorema matematico.
+alto|Cuando termina la vida de la escuela comienza la escuela de la vida|Pista: Alto 3 Refran popular.
