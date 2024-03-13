@@ -15,7 +15,6 @@ class Juego:
         
         self.indice_jugador_actual = 0
 
-    # Funcion que determina los turnos de juego lanzando la ruleta para cada jugador y comparando resultados para determinar el orden
     def asignar_turnos(self):
         for jugador in self.jugadores:
             print(f"Girando la ruleta para determinar el turno de {jugador.nombre}...")
@@ -34,9 +33,6 @@ class Juego:
         for i, jugador in enumerate(self.jugadores, start=1):
             print(f"{i}. {jugador.nombre}")
 
-    
-
-    # Funcion que gestiona la compra de las vocales, luego de que es ingresada una en el desarrollo del juego
     def comprar_vocal(self, jugador: Jugador, letra: str):
         costo_vocal = 100  
 
@@ -71,7 +67,7 @@ class Juego:
                 print(f"{jugador.nombre} ha obtenido '{premio}'. Pasando al siguiente jugador.")
                 self.cambiar_turno()
                 continue
-                
+
             letra = input("Elige una letra: ").upper()
 
             if letra in 'AEIOU':
@@ -114,7 +110,7 @@ class Juego:
             print(f"Saldo actual de {jugador.nombre}: {jugador.saldo}")
             print("-------------------------------------------")
 
-            
+
             if premio in ['Pierde turno', 'Quiebra']:
                 self.cambiar_turno()
 
