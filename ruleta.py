@@ -17,9 +17,7 @@ class Ruleta:
             
             return "Comodin"
         
-        """ # Si el resultado es "X2", "1/2" o un valor numérico, se convierte a int
-        if resultado in ["X2", "1/2", "50", "150", "200"]:
-            resultado = int(resultado) """
+        
 
         return resultado
 

@@ -31,6 +31,6 @@ class Jugador:
         elif premio == "1/2":
             self.saldo //= 2
         elif premio == "Comodin":
-            pass  # Implementar lógica para Comodin si es necesario
+            pass  
         else:
             self.saldo += int(premio)* veces_aparece_letra

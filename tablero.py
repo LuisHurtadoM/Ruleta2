@@ -5,7 +5,7 @@ class Tablero:
 
     def __init__(self, nivel_dificultad: str):
         self.frase_juego, self.pista = self.leer_frase_desde_archivo(nivel_dificultad)
-        self.frase_revelada = "_" * len(self.frase_juego)
+        self.frase_revelada = "".join([letra if not letra.isalpha()  else "_" for letra in self.frase_juego])
         self.letras_usadas = set()
 
     def leer_frase_desde_archivo(self, nivel_dificultad: str) -> tuple:
@@ -24,9 +24,9 @@ class Tablero:
     def mostrar_tablero(self) -> str:
         if not Tablero.pista:
             Tablero.pista = self.pista
-        letras_reveladas = " ".join([letra if letra in self.letras_usadas else "_" for letra in self.frase_juego])
+        letras_reveladas = " ".join([letra if letra in self.letras_usadas or letra == " " else "_" for letra in self.frase_juego])
         letras_usadas_str = ", ".join(sorted(self.letras_usadas))
-        return f"Pista: {Tablero.pista}\nLetras usadas: {letras_usadas_str}\nTablero: {letras_reveladas}"
+        return f"Pista: {self.pista}\nLetras usadas: {letras_usadas_str}\nTablero: {letras_reveladas}"
 
     def letra_en_frase(self, letra: str) -> bool:
         self.letras_usadas.add(letra)
@@ -34,6 +34,8 @@ class Tablero:
 
     def cantidad_letras(self, letra: str)-> int:
         return int(self.frase_juego.count(letra))
+
+    
 
     def actualizar_tablero(self, letra: str) -> None:
         letra = letra.upper()
@@ -46,4 +48,5 @@ class Tablero:
         self.frase_revelada = nueva_frase
 
     def frase_completa(self) -> bool:
+        
         return self.frase_juego == self.frase_revelada

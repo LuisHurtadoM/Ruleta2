@@ -32,8 +32,7 @@ class Juego:
         for i, jugador in enumerate(self.jugadores, start=1):
             print(f"{i}. {jugador.nombre}")
 
-    """ def categoria_juego(self)-> str:
-        return random.choice(self.categoria) """
+    
 
   
     def comprar_vocal(self, jugador: Jugador, letra: str):
@@ -56,15 +55,14 @@ class Juego:
         self.indice_jugador_actual = (self.indice_jugador_actual + 1) % len(self.jugadores)
 
     def jugar(self):
+        
         while not self.tablero.frase_completa() and any(jugador.saldo > 0 for jugador in self.jugadores):
             jugador = self.jugadores[self.indice_jugador_actual]
 
-            """ if jugador.saldo <= 0:
-                self.cambiar_turno()
-                continue """
+            
 
             print(f"Turno de {jugador.nombre}:")
-            # Girar la ruleta y obtener el premio o penalización
+            
             premio = self.ruleta.girar_ruleta(jugador)
             print(f"La ruleta ha dado como resultado: {premio}")
 
@@ -73,53 +71,51 @@ class Juego:
                 self.cambiar_turno()
                 continue
 
-            """ if premio == 'Comodin':
-                self.cambiar_turno()  # Pasar al siguiente jugador sin realizar más acciones en el turno actual
-                continue """
-
+            
+                 
             letra = input("Elige una letra: ").upper()
 
             if letra in 'AEIOU':
-                print("Deseas entonces comprar una vocal") # Si es una vocal, intentar comprarla
+                print("Deseas entonces comprar una vocal") 
                 if not self.comprar_vocal(jugador,letra):
-                    # Si no se pudo comprar, verificar si el jugador tiene comodines disponibles
+                   
                     if jugador.comodines_disponibles > 0:
                         usar_comodin = input(f"{jugador.nombre}, ¿quieres usar un comodín? (S/N): ").upper()
                         if usar_comodin == 'S':
                             if jugador.usar_comodin():
-                                # Si se utilizó un comodín con éxito, se decrementa el número de comodines disponibles
+                                
                                 continue
-                    # Si no tiene comodines disponibles o decide no usarlos, pasar al siguiente jugador
+                    
                     self.cambiar_turno()
                     continue
 
-            # Verificar si la letra ya ha sido usada
+            
             if letra in self.tablero.letras_usadas:
                 print("Esa letra ya ha sido usada. Elige otra.")
                 continue
 
-            # Verificar si la letra está en la frase y actualizar el tablero
+            
             if self.tablero.letra_en_frase(letra):
                 veces_aparece_letra = int(self.tablero.cantidad_letras(letra))
-                self.tablero.actualizar_tablero(letra)  # Llamada para actualizar el tablero
+                self.tablero.actualizar_tablero(letra)  
                 print(f"¡Bien hecho! {letra} está en la frase.")
             else:
                 print(f"{letra} no está en la frase.")
                 self.cambiar_turno()
-                # Pasar al siguiente jugador si la letra no está en la frase y no es una vocal
+                
                 if letra in 'AEIOU':
                     print("Letra incorrecta. Pasando al siguiente jugador.")
                     self.cambiar_turno()
                     continue
 
-            # Aplicar premio o penalización al jugador
+            
             jugador.aplicar_premio(premio,veces_aparece_letra)
-            # Mostrar el estado actual del tablero y el saldo del jugador
+            
             print(self.tablero.mostrar_tablero())
             print(f"Saldo actual de {jugador.nombre}: {jugador.saldo}")
             print("-------------------------------------------")
 
-            # Si el premio no es 'Pierde turno' o 'Quiebra', pasamos al siguiente jugador
+            r
             if premio in ['Pierde turno', 'Quiebra']:
                 self.cambiar_turno()
 
@@ -129,7 +125,7 @@ class Juego:
             print("Todos los jugadores están fuera de saldo. El juego ha terminado.")
 
 if __name__ == "__main__":
-    # Crear jugadores, ruleta y tablero
+   
     jugador1 = Jugador("Luis")
     jugador2 = Jugador("Aura")
     jugador3 = Jugador("Rodolfo")
@@ -140,4 +136,5 @@ if __name__ == "__main__":
     tablero = Tablero(nivel)
     juego = Juego(jugadores, ruleta, tablero)
     juego.asignar_turnos()
+    
     juego.jugar()
