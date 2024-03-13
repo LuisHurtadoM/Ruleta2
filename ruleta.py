@@ -11,13 +11,10 @@ class Ruleta:
     def girar_ruleta(self, jugador) -> str:
         resultado = random.choice(self.valores_ruleta)
         
-        # Si el resultado es "Comodin", se le entrega un comodín al jugador y se permite seguir jugando
         if resultado == "Comodin":
-            jugador.recibir_comodin(1)  # Se le entrega un comodín al jugador
+            jugador.recibir_comodin(1)  
             
             return "Comodin"
         
-        
-
         return resultado
 

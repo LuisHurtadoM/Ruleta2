@@ -3,8 +3,9 @@ from ruleta import Ruleta
 from tablero import Tablero
 import random
 
+# Clase que gestiona el juego en su generalidad.
 class Juego:
-    categoria = ["Bajo", "Medio", "Alto"]
+    
     veces_aparece_letra = 1
 
     def __init__(self, jugadores: list[Jugador], ruleta: Ruleta, tablero: Tablero):
@@ -14,19 +15,20 @@ class Juego:
         
         self.indice_jugador_actual = 0
 
+    # Funcion que determina los turnos de juego lanzando la ruleta para cada jugador y comparando resultados para determinar el orden
     def asignar_turnos(self):
         for jugador in self.jugadores:
             print(f"Girando la ruleta para determinar el turno de {jugador.nombre}...")
-            premio = self.ruleta.girar_ruleta(jugador)  # Realiza el primer giro de la ruleta
-            jugador.premio_inicial = premio  # Guarda el premio inicial obtenido por el jugador
-        self.jugadores.sort(key=lambda jugador: jugador.premio_inicial, reverse=True)  # Ordena los jugadores por premio
+            premio = self.ruleta.girar_ruleta(jugador)  
+            jugador.premio_inicial = premio  
+        self.jugadores.sort(key=lambda jugador: jugador.premio_inicial, reverse=True) 
         print("Orden de los turnos:")
         for i, jugador in enumerate(self.jugadores, start=1):
             print(f"{i}. {jugador.nombre}")
         
         print(f"{self.tablero.pista}")
     
-
+    # Funcion que saca por pantalla el orden en el que los jugadores han quedado y jugaran
     def mostrar_orden_turnos(self):
         print("Orden de los turnos:")
         for i, jugador in enumerate(self.jugadores, start=1):
@@ -34,9 +36,9 @@ class Juego:
 
     
 
-  
+    # Funcion que gestiona la compra de las vocales, luego de que es ingresada una en el desarrollo del juego
     def comprar_vocal(self, jugador: Jugador, letra: str):
-        costo_vocal = 100  # Costo de comprar una vocal
+        costo_vocal = 100  
 
         if jugador.saldo >= costo_vocal:
             vocal = letra.upper()
@@ -51,6 +53,7 @@ class Juego:
             return False
         return True
 
+    # Funcion que gestiona los cambios de turno que se pueden dar por distintas razones
     def cambiar_turno(self):
         self.indice_jugador_actual = (self.indice_jugador_actual + 1) % len(self.jugadores)
 
@@ -132,5 +135,4 @@ if __name__ == "__main__":
     tablero = Tablero(nivel)
     juego = Juego(jugadores, ruleta, tablero)
     juego.asignar_turnos()
-    
     juego.jugar()

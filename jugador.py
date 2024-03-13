@@ -1,4 +1,4 @@
-#from ruleta import Ruleta
+
 
 class Jugador:
     def __init__(self, nombre: str, saldo: int = 200):
@@ -10,14 +10,14 @@ class Jugador:
         if self.comodines_disponibles > 0:
             self.comodines_disponibles -= 1
             print(f"{self.nombre} ha utilizado un comodín para seguir jugando.")
-            return True  # Se utilizó un comodín con éxito
+            return True  
         else:
             print("No tienes comodines disponibles.")
-            return False  # No se pudo utilizar un comodín
+            return False  
 
     def recibir_comodin(self, cantidad: int):
         self.comodines_disponibles += cantidad
-        # print(f"{self.nombre} ha recibido {cantidad} comodines.")
+        
 
     def elegir_letra(self) -> str:
         letra = input("Elige una letra: ").upper()
