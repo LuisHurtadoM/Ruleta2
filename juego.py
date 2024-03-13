@@ -59,8 +59,6 @@ class Juego:
         while not self.tablero.frase_completa() and any(jugador.saldo > 0 for jugador in self.jugadores):
             jugador = self.jugadores[self.indice_jugador_actual]
 
-            
-
             print(f"Turno de {jugador.nombre}:")
             
             premio = self.ruleta.girar_ruleta(jugador)
@@ -70,9 +68,7 @@ class Juego:
                 print(f"{jugador.nombre} ha obtenido '{premio}'. Pasando al siguiente jugador.")
                 self.cambiar_turno()
                 continue
-
-            
-                 
+                
             letra = input("Elige una letra: ").upper()
 
             if letra in 'AEIOU':
@@ -115,7 +111,7 @@ class Juego:
             print(f"Saldo actual de {jugador.nombre}: {jugador.saldo}")
             print("-------------------------------------------")
 
-            r
+            
             if premio in ['Pierde turno', 'Quiebra']:
                 self.cambiar_turno()
 
